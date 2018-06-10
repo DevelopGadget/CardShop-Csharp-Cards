@@ -12,6 +12,8 @@ namespace eCommerce_Csharp_Cards.Models
         [Required]
         public string Nombre {get; set;}
         [Required]
+        public string Url {get; set;}
+        [Required]
         public double Valor {get; set;}
         [Required]
         public int Disponible {get; set;}
