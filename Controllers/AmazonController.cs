@@ -14,6 +14,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
     [Route ("Cards/[controller]")]
     public class AmazonController : Controller {
         private readonly ICards _Cards;
+        public AmazonController(ICards Cards) => this._Cards = Cards;
         [HttpGet]
         public async Task<IActionResult> Get () {
             try {
