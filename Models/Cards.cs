@@ -33,7 +33,6 @@ namespace eCommerce_Csharp_Cards.Models {
             var Err = new List<ValidationResult> ();
             if (Disponible < 0) Err.Add (new ValidationResult ("La disponibilidad tiene que ser mayor o igual a 0", new string[] { "1" }));
             if (Valor <= 0) Err.Add (new ValidationResult ("El valor tiene que ser mayor a 0", new string[] { "2" }));
-            if(!File.Exists(Url)) Err.Add (new ValidationResult ("Url de imagen", new string[] { "2" }));
             return Err;
         }
     }

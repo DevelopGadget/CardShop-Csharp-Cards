@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using eCommerce_Csharp_Cards.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,12 +18,12 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public LoginController (IConfiguration config) => this._Config = config;
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login ([FromBody] string User, string Password) {
+        public async Task<IActionResult> Login ([FromBody] User user) {
             try {
-                if (!User.Equals (_Config["User"].ToString ())) return StatusCode (StatusCodes.Status401Unauthorized, "Usuario invalido");
-                if (!Password.Equals (_Config["Password"].ToString ())) return StatusCode (StatusCodes.Status401Unauthorized, "Contraseña invalida");
+                if (!user.Username.Equals (_Config["User"].ToString ())) return StatusCode (StatusCodes.Status401Unauthorized, "Usuario invalido");
+                if (!user.Password.Equals (_Config["Password"].ToString ())) return StatusCode (StatusCodes.Status401Unauthorized, "Contraseña invalida");
                 var claims = new [] {
-                    new Claim (JwtRegisteredClaimNames.UniqueName, User),
+                    new Claim (JwtRegisteredClaimNames.UniqueName, user.Username),
                     new Claim ("Role", "Administrador"),
                     new Claim (JwtRegisteredClaimNames.Jti, System.Guid.NewGuid ().ToString ())
                 };

@@ -18,7 +18,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
         [HttpGet]
         public async Task<IActionResult> Get () {
             try {
-                IEnumerable<Cards> Cards = await _Cards.GetiTunes ();
+                IEnumerable<Cards> Cards = await _Cards.GetPaypal ();
                 if (Cards == null) return StatusCode (StatusCodes.Status406NotAcceptable, "No Hay Documentos");
                 return Ok (JsonConvert.SerializeObject (Cards));
             } catch (Exception) {
@@ -30,7 +30,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public async Task<IActionResult> Get (string Id) {
             try {
                 if (string.IsNullOrEmpty (Id) || Id.Length < 24) return StatusCode (StatusCodes.Status406NotAcceptable, "Id Invalid");
-                Cards Card = await _Cards.GetiTunes (Id);
+                Cards Card = await _Cards.GetPaypal(Id);
                 if (Card == null) return StatusCode (StatusCodes.Status406NotAcceptable, "No Hay Documentos");
                 return Ok (JsonConvert.SerializeObject (Card));
             } catch (Exception) {
@@ -42,7 +42,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public async Task<IActionResult> Post ([FromBody] Cards Card) {
             try {
                 if (!ModelState.IsValid) return StatusCode (StatusCodes.Status406NotAcceptable, ModelState);
-                await _Cards.PostiTunes (Card);
+                await _Cards.PostPaypal (Card);
                 return Ok ("Creado");
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
@@ -54,11 +54,11 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public async Task<IActionResult> Put (string Id, [FromBody] Cards Card) {
             try {
                 if (string.IsNullOrEmpty (Id) || Id.Length < 24) return StatusCode (StatusCodes.Status406NotAcceptable, "Id Invalid");
-                Cards CardId = await _Cards.GetiTunes (Id);
+                Cards CardId = await _Cards.GetPaypal (Id);
                 if (CardId == null) return StatusCode (StatusCodes.Status406NotAcceptable, "No Hay Documentos");
                 if (!ModelState.IsValid) return StatusCode (StatusCodes.Status406NotAcceptable, ModelState);
                 Card.Id = Id;
-                var h = await _Cards.PutiTunes (Id, Card);
+                var h = await _Cards.PutPaypal (Id, Card);
                 if (h.MatchedCount > 0) return Ok ("Editado");
                 else return StatusCode (StatusCodes.Status406NotAcceptable, "No Editado");
             } catch (Exception) {
@@ -70,7 +70,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public async Task<IActionResult> Delete (string Id) {
             try {
                 if (string.IsNullOrEmpty (Id) || Id.Length < 24) return StatusCode (StatusCodes.Status406NotAcceptable, "Id Invalid");
-                var h = await _Cards.DeleteiTunes (Id);
+                var h = await _Cards.DeletePaypal (Id);
                 if (h.DeletedCount > 0) return Ok ("Eliminado");
                 else return StatusCode (StatusCodes.Status406NotAcceptable, "No Eliminado");
             } catch (Exception) {
