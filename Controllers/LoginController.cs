@@ -18,7 +18,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public LoginController (IConfiguration config) => this._Config = config;
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login ([FromBody] User user) {
+        public IActionResult Login ([FromBody] User user) {
             try {
                 if (!user.Username.Equals (_Config["User"].ToString ())) return StatusCode (StatusCodes.Status401Unauthorized, "Usuario invalido");
                 if (!user.Password.Equals (_Config["Password"].ToString ())) return StatusCode (StatusCodes.Status401Unauthorized, "Contraseña invalida");
@@ -29,7 +29,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
                 };
                 var key = new SymmetricSecurityKey (Encoding.UTF8.GetBytes (_Config["Key"]));
                 var creds = new SigningCredentials (key, SecurityAlgorithms.HmacSha256);
-                var expiration = System.DateTime.Now.AddDays(1);
+                var expiration = System.DateTime.Now.AddDays (1);
                 JwtSecurityToken token = new JwtSecurityToken (_Config["Issuer"],
                     _Config["Issuer"],
                     claims : claims,
