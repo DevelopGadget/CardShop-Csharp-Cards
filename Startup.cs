@@ -43,8 +43,10 @@ namespace eCommerce_Csharp_Cards {
         public void Configure (IApplicationBuilder app, IHostingEnvironment env) {
             if (env.IsDevelopment ()) {
                 app.UseDeveloperExceptionPage ();
+                app.UseDatabaseErrorPage();
             }
             app.UseAuthentication ();
+            app.UseStaticFiles();
             app.UseCors (data =>
                 data.AllowAnyHeader ().AllowAnyMethod ().AllowAnyOrigin ());
             app.UseMvc (Routes => {
