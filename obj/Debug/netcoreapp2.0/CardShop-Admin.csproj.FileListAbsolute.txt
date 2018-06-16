@@ -1,0 +1,11 @@
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\bin\Debug\netcoreapp2.0\CardShop-Admin.deps.json
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\bin\Debug\netcoreapp2.0\CardShop-Admin.runtimeconfig.json
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\bin\Debug\netcoreapp2.0\CardShop-Admin.runtimeconfig.dev.json
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\bin\Debug\netcoreapp2.0\CardShop-Admin.dll
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\obj\Debug\netcoreapp2.0\CardShop-Admin.csprojAssemblyReference.cache
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\obj\Debug\netcoreapp2.0\CardShop-Admin.csproj.CoreCompileInputs.cache
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\obj\Debug\netcoreapp2.0\CardShop-Admin.AssemblyInfoInputs.cache
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\obj\Debug\netcoreapp2.0\CardShop-Admin.AssemblyInfo.cs
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\bin\Debug\netcoreapp2.0\CardShop-Admin.pdb
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\obj\Debug\netcoreapp2.0\CardShop-Admin.dll
+C:\Users\FernanPro18\source\repos\CardShop-Admin\CardShop-Admin\obj\Debug\netcoreapp2.0\CardShop-Admin.pdb

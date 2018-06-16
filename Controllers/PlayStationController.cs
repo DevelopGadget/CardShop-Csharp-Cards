@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using eCommerce_Csharp_Cards.Interfaces;
 using eCommerce_Csharp_Cards.Models;

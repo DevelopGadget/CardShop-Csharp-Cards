@@ -2,16 +2,15 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using eCommerce_Csharp_Cards.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
 
-namespace eCommerce_Csharp_Cards.Controllers {
+namespace eCommerce_Csharp_Cards.Controllers
+{
     [Route ("Cards/[controller]")]
     public class LoginController : Controller {
         private IConfiguration _Config;
