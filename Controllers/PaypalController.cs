@@ -42,7 +42,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
             try {
                 if (!ModelState.IsValid) return StatusCode (StatusCodes.Status406NotAcceptable, ModelState);
                 await _Cards.PostPaypal (Card);
-                return Ok ("Creado");
+                return Ok (JsonConvert.SerializeObject (await _Cards.GetPaypal()));
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
             }
@@ -53,12 +53,10 @@ namespace eCommerce_Csharp_Cards.Controllers {
         public async Task<IActionResult> Put (string Id, [FromBody] Cards Card) {
             try {
                 if (string.IsNullOrEmpty (Id) || Id.Length < 24) return StatusCode (StatusCodes.Status406NotAcceptable, "Id Invalid");
-                Cards CardId = await _Cards.GetPaypal (Id);
-                if (CardId == null) return StatusCode (StatusCodes.Status406NotAcceptable, "No Hay Documentos");
                 if (!ModelState.IsValid) return StatusCode (StatusCodes.Status406NotAcceptable, ModelState);
                 Card.Id = Id;
                 var h = await _Cards.PutPaypal (Id, Card);
-                if (h.MatchedCount > 0) return Ok ("Editado");
+                if (h.MatchedCount > 0) return Ok (JsonConvert.SerializeObject (await _Cards.GetPaypal()));
                 else return StatusCode (StatusCodes.Status406NotAcceptable, "No Editado");
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
@@ -70,7 +68,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
             try {
                 if (string.IsNullOrEmpty (Id) || Id.Length < 24) return StatusCode (StatusCodes.Status406NotAcceptable, "Id Invalid");
                 var h = await _Cards.DeletePaypal (Id);
-                if (h.DeletedCount > 0) return Ok ("Eliminado");
+                if (h.DeletedCount > 0) return Ok (JsonConvert.SerializeObject (await _Cards.GetPaypal()));
                 else return StatusCode (StatusCodes.Status406NotAcceptable, "No Eliminado");
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
