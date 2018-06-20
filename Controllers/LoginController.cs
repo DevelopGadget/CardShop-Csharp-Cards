@@ -42,5 +42,11 @@ namespace eCommerce_Csharp_Cards.Controllers
                 return BadRequest ("Ha ocurrido un error vuelva a intentar");
             }
         }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult VerficarToken(){
+            return Ok(200);
+        }
     }
 }
