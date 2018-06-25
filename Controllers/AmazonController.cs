@@ -13,7 +13,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
     [Route ("Cards/[controller]")]
     public class AmazonController : Controller {
         private readonly ICards _Cards;
-        public AmazonController(ICards Cards) => this._Cards = Cards;
+        public AmazonController (ICards Cards) => this._Cards = Cards;
         [HttpGet]
         public async Task<IActionResult> Get () {
             try {
@@ -42,7 +42,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
             try {
                 if (!ModelState.IsValid) return StatusCode (StatusCodes.Status406NotAcceptable, ModelState);
                 await _Cards.PostAmazon (Card);
-                return Ok (JsonConvert.SerializeObject (await _Cards.GetAmazon()));
+                return await Colecciones();
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
             }
@@ -56,7 +56,7 @@ namespace eCommerce_Csharp_Cards.Controllers {
                 if (!ModelState.IsValid) return StatusCode (StatusCodes.Status406NotAcceptable, ModelState);
                 Card.Id = Id;
                 var h = await _Cards.PutAmazon (Id, Card);
-                if (h.MatchedCount > 0) return Ok (JsonConvert.SerializeObject (await _Cards.GetAmazon()));
+                if (h.MatchedCount > 0) return await Colecciones();
                 else return StatusCode (StatusCodes.Status406NotAcceptable, "No Editado");
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
@@ -68,11 +68,23 @@ namespace eCommerce_Csharp_Cards.Controllers {
             try {
                 if (string.IsNullOrEmpty (Id) || Id.Length < 24) return StatusCode (StatusCodes.Status406NotAcceptable, "Id Invalid");
                 var h = await _Cards.DeleteAmazon (Id);
-                if (h.DeletedCount > 0) return Ok (JsonConvert.SerializeObject (await _Cards.GetAmazon()));
+                if (h.DeletedCount > 0) return await Colecciones();
                 else return StatusCode (StatusCodes.Status406NotAcceptable, "No Eliminado");
             } catch (Exception) {
                 return BadRequest ("Ha Ocurrido Un Error Vuelva A Intentar");
             }
+        }
+
+        public async Task<IActionResult> Colecciones () {
+            List<IEnumerable<Cards>> Cards = new List<IEnumerable<Cards>> ();
+            Cards.Add (await _Cards.GetAmazon ());
+            Cards.Add (await _Cards.GetGooglePlay ());
+            Cards.Add (await _Cards.GetiTunes ());
+            Cards.Add (await _Cards.GetPaypal ());
+            Cards.Add (await _Cards.GetPlayStation ());
+            Cards.Add (await _Cards.GetSteam ());
+            Cards.Add (await _Cards.GetXbox ());
+            return Ok (JsonConvert.SerializeObject (Cards));
         }
     }
 }

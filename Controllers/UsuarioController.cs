@@ -21,6 +21,10 @@ namespace eCommerce_Csharp_Cards.Controllers {
 
     [HttpGet]
     public async Task<IActionResult> Get () {
+      return await Colecciones();
+    }
+    
+    public async Task<IActionResult> Colecciones(){
       try {
         List<IEnumerable<Cards>> Cards = new List<IEnumerable<Cards>>();
         Cards.Add(await _Cards.GetAmazon());
